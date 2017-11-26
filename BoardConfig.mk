@@ -10,8 +10,12 @@ LOCAL_PATH := device/Infinix/X556
 #FORCE_32_BIT := true
 
 # Platform
-TARGET_BOARD_PLATFORM := mt6753
+
+TARGET_BOARD_PLATFORM := mt6737m
+MTK_BOARD_PLATFORMS += mt6737m
 TARGET_NO_BOOTLOADER := true
+TARGET_NO_FACTORYIMAGE := true
+TARGET_BOOTLOADER_BOARD_NAME := mt6737m
 
 # Architecture
 ARCH := arm64
@@ -51,17 +55,23 @@ BOARD_MKBOOTIMG_ARGS := --kernel_offset $(BOARD_KERNEL_OFFSET) --ramdisk_offset 
 BOARD_FLASH_BLOCK_SIZE := 131072
 TARGET_KMODULES := true
 
+
 # Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := mt6753
+TARGET_BOOTLOADER_BOARD_NAME := mt6737m
+
 
 # Recovery
+BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_USERIMAGES_USE_EXT4 := true
-BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
+TARGET_USERIMAGES_USE_F2FS := true
+TARGET_KERNEL_HAVE_EXFAT := true
+TARGET_KERNEL_HAVE_NTFS := true
 
 # Hack for build
 $(shell mkdir -p $(OUT)/obj/KERNEL_OBJ/usr)
 
 # Kernel
+
 TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/prebuild/kernel
 
 # make_ext4fs requires numbers in dec format
@@ -82,20 +92,26 @@ TARGET_CPU_MEMCPY_OPT_DISABLE := true
 # Flags
 BOARD_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 BOARD_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
-#BOARD_GLOBAL_CFLAGS += -DMTK_HARDWARE
-#BOARD_GLOBAL_CPPFLAGS += -DMTK_HARDWARE
 
+# Charger
+WITH_LINEAGE_CHARGER := false
+
+ 
+# SensorHAL
+TARGET_SENSORS_DEVICE_API_VERSION := SENSORS_DEVICE_API_VERSION_1_1
 
 # Graphics
 BOARD_EGL_CFG := /vendor/Infinix/X556/vendor/lib/egl/egl.cfg
-BOARD_EGL_WORKAROUND_BUG_10194508 := true
 USE_OPENGL_RENDERER := true
+
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
+PRESENT_TIME_OFFSET_FROM_VSYNC_NS := 0
 MTK_HWC_SUPPORT := yes
 MTK_HWC_VERSION := 1.4.1
-MTK_GPU_VERSION := mali midgard r7p0
+MTK_GPU_VERSION := mali midgard r12p1
+OVERRIDE_RS_DRIVER := libRSDriver_mtk.so
 
 # Mediatek support
 BOARD_USES_MTK_HARDWARE := true
@@ -112,11 +128,13 @@ TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 BOARD_USES_MTK_AUDIO := true
 
 # CMHW
-BOARD_USES_CYANOGEN_HARDWARE := true
-BOARD_HARDWARE_CLASS := device/Infinix/X556/cmhw
+
+#BOARD_USES_CYANOGEN_HARDWARE := true
+#BOARD_HARDWARE_CLASS := device/Infinix/X556/cmhw
+
 
 # Fix video autoscaling on old OMX decoders
-TARGET_OMX_LEGACY_RESCALING := true
+#TARGET_OMX_LEGACY_RESCALING := true
 
 # Charger
 BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness
@@ -188,15 +206,14 @@ TARGET_SYSTEM_PROP := device/Infinix/X556/system.prop
 TARGET_SPECIFIC_HEADER_PATH := device/Infinix/X556/include
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun/file
 
-ifneq ($(MTK_K64_SUPPORT),yes)
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.zygote=zygote32
-else
-PRODUCT_COPY_FILES += system/core/rootdir/init.zygote64_32.rc:root/init.zygote64_32.rc
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.zygote=zygote64_32
-endif
 
 BOARD_SEPOLICY_DIRS := \
        device/Infinix/X556/sepolicy
 
 # Seccomp filter
+
 BOARD_SECCOMP_POLICY += device/Infinix/X556/seccomp
+
+#HIDL
+DEVICE_MANIFEST_FILE := device/Infinix/X556/hidl/manifest.xml
+

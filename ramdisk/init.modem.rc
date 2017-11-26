@@ -155,3 +155,11 @@ service terservice /vendor/bin/terservice
 on property:ril.muxreport=1
     start muxreport-daemon
 
+
+    # Clear the sim switch flag
+    setprop persist.radio.simswitch ""
+    
+#
+#  Modem related services (End)
+#
+

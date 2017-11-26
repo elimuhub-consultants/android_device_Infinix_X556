@@ -1,6 +1,8 @@
+
 #                                       Device Tree for Infinix NOTE 3 Pro (3.18.35+)
 
 The Infinix HOT 4 Pro (codenamed _"X556"_) is a mid-range smartphone from Infinix.
+
 
 Basic   | Spec Sheet
 -------:|:-------------------------
@@ -17,6 +19,7 @@ Camera  | Main 13 MP / Front 5 MP, autofocus, LED flash , Front Flach
 
 Copyright 2017 - The LineageOS Project.
 Thanks to olegsvs, danielhk, Zormax, xcore995, SRT.
+
 
 ### Working:
 - [x] Wifi
@@ -35,5 +38,6 @@ Thanks to olegsvs, danielhk, Zormax, xcore995, SRT.
 - [x] RIL
 - [x] GPS
 - [x] Video Recording
+
 
 

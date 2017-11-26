@@ -22,6 +22,7 @@ allow domain sysfs_devinfo:file r_file_perms;
 
 # allow domain anr_data_file:file append;
 
+
 # extmem policy for gmo debug15 over external memory
 allow domain exm0_device:chr_file rw_file_perms;
 
@@ -31,3 +32,5 @@ allow domain exm0_device:chr_file rw_file_perms;
 allow domain log_device:dir search;
 allow domain log_device:chr_file w_file_perms;
 allow domain storage_file:dir search;
+# Fingerprint device
+allow domain esfp0_device:chr_file rw_file_perms;
