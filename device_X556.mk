@@ -4,7 +4,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 LOCAL_PATH := device/Infinix/X556
 
-$(call inherit-product-if-exists, vendor/moto/e4/e4-vendor.mk)
+$(call inherit-product-if-exists, vendor/Infinix/X556/X556-vendor.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/Infinix/X556/overlay
 PRODUCT_PACKAGE_OVERLAYS += device/Infinix/X556/overlay 
