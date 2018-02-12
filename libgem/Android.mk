@@ -50,7 +50,7 @@ LOCAL_SRC_FILES := \
 	lib/SWWatchDog.cpp
 
 LOCAL_C_INCLUDES := \
-	device/moto/e4/libgem/inc \
+	device/Infinix/X556/libgem/inc \
 	external/libpng \
 	external/zlib \
 	external/skia/src/images \
@@ -95,7 +95,7 @@ LOCAL_SRC_FILES := \
 	lib/GuiExtImpl.cpp
 
 LOCAL_C_INCLUDES := \
-	device/moto/e4/libgem/inc
+	device/Infinix/X556/libgem/inc
 
 LOCAL_SHARED_LIBRARIES := \
 	libutils \

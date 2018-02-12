@@ -16,28 +16,29 @@ TARGET_NO_FACTORYIMAGE := true
 TARGET_BOOTLOADER_BOARD_NAME := mt6737m
 
 # Architecture
-ifeq ($(FORCE_32_BIT),true)
-TARGET_ARCH := arm
-TARGET_ARCH_VARIANT := armv7-a-neon
-TARGET_CPU_ABI := armeabi-v7a
-TARGET_CPU_ABI2 := armeabi
-TARGET_CPU_VARIANT := cortex-a53
-else
+ARCH := arm64
 TARGET_ARCH := arm64
+KERNEL_ARCH := arm64
+TARGET_KERNEL_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
 TARGET_CPU_VARIANT := cortex-a53
-
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv7-a-neon
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53
-
-TARGET_CPU_ABI_LIST_64_BIT := $(TARGET_CPU_ABI)
-TARGET_CPU_ABI_LIST_32_BIT := $(TARGET_2ND_CPU_ABI),$(TARGET_2ND_CPU_ABI2)
-TARGET_CPU_ABI_LIST := $(TARGET_CPU_ABI_LIST_64_BIT),$(TARGET_CPU_ABI_LIST_32_BIT)
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
+BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 androidboot.selinux=permissive androidboot.selinux=disabled 
+TARGET_USES_64_BIT_BINDER := true
+TARGET_IS_64_BIT :=true
+TARGET_BOARD_SUFFIX := _64
+TARGET_CPU_ABI_LIST := arm64-v8a,armeabi-v7a,armeabi
+TARGET_CPU_ABI_LIST_32_BIT := armeabi-v7a,armeabi
+TARGET_CPU_ABI_LIST_64_BIT := arm64-v8a
+TARGET_SUPPORTS_32_BIT_APPS := true
+TARGET_SUPPORTS_64_BIT_APPS := true
 endif
 
 # Recovery
@@ -48,26 +49,14 @@ TARGET_KERNEL_HAVE_EXFAT := true
 TARGET_KERNEL_HAVE_NTFS := true
 
 # Kernel
-BOARD_KERNEL_IMAGE_NAME := zImage-dtb
+BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
+TARGET_KERNEL_CONFIG := rlk6737m_open_n_defconfig
 TARGET_KERNEL_SOURCE := kernel/Infinix/X556
 BOARD_KERNEL_BASE := 0x40000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_RAMDISK_OFFSET := 0x04000000
 BOARD_TAGS_OFFSET := 0xE000000
-ifeq ($(FORCE_32_BIT),true)
-ARCH := arm
-TARGET_ARCH := arm
-KERNEL_ARCH := arm
-TARGET_KERNEL_ARCH := arm
-TARGET_KERNEL_CONFIG := rlk6737m_open_n_defconfig
-BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,32N2 androidboot.selinux=permissive androidboot.selinux=disabled 
-BOARD_KERNEL_OFFSET := 0x00008000
-else
-TARGET_KERNEL_ARCH := arm64
-BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 androidboot.selinux=permissive androidboot.selinux=disabled 
-BOARD_KERNEL_OFFSET = 0x00080000
-TARGET_USES_64_BIT_BINDER := true
-endif
+BOARD_KERNEL_OFFSET := 0x00080000
 BOARD_MKBOOTIMG_ARGS := --kernel_offset $(BOARD_KERNEL_OFFSET) --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_TAGS_OFFSET)
 
 # make_ext4fs requires numbers in dec format
