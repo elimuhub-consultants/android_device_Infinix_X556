@@ -114,3 +114,9 @@ ro.longcheer.simsum=2
 ro.longcheer.thermal=1
 ro.boot.opt_eccci_c2k=0
 media.settings.xml=/vendor/etc/media_profiles.xml
+
+#add for fingerprint start
+persist.fingerprint = goodix
+#add for fingerprint end
+
+
