@@ -4,14 +4,14 @@
 PRODUCT_RELEASE_NAME := X556
 
 # Inherit some common CM stuff.
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 # Inherit device configuration
 $(call inherit-product, device/Infinix/X556/device_X556.mk)
 
-TARGET_SCREEN_HEIGHT := 1920
-TARGET_SCREEN_WIDTH := 1080
-DEVICE_RESOLUTION := 1080x1920
+TARGET_SCREEN_HEIGHT := 1280
+TARGET_SCREEN_WIDTH := 720
+DEVICE_RESOLUTION := 720x1280
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := X556
