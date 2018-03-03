@@ -81,7 +81,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/enableswap.sh:root/enableswap.sh \
     $(LOCAL_PATH)/rootdir/init.rc:root/init.rc \
     $(LOCAL_PATH)/rootdir/sbin/busybox:root/sbin/busybox \
-    $(LOCAL_PATH)/rootdir/init.microtrust.rc:root/init.microtrust.rc \
     $(LOCAL_PATH)/rootdir/init.connectivity.rc:root/init.connectivity.rc \
     $(LOCAL_PATH)/rootdir/init.mt6735.power.rc:root/init.mt6735.power.rc
 
